@@ -3,6 +3,8 @@
 }
 body {
   font-size: 14px;
+  width: 100%;
+  margin: 0;
 }
 .v9_171 {
   width: 100%;
@@ -58,36 +60,51 @@ body {
   border: 2px solid rgba(0,0,0,0.550000011920929);
   overflow: hidden;
 }
-.v9_178 {
+.v9_178 button a {
   width: 154px;
   color: rgba(255,255,255,1);
   position: absolute;
   top: 281px;
-  left: 125px;
+  left: 138px;
+
+  text-decoration: none;
+  background-color: transparent; 
+  border: none; 
+  outline: none;
   font-family: Inter;
   font-weight: Regular;
   font-size: 32px;
   opacity: 1;
   text-align: center;
 }
-.v9_179 {
+.v9_179 button a {
   width: 177px;
   color: rgba(255,255,255,1);
   position: absolute;
   top: 281px;
-  left: 631px;
+  left: 1050px;
+
+  text-decoration: none;
+  background-color: transparent; 
+  border: none; 
+  outline: none;
   font-family: Inter;
   font-weight: Regular;
   font-size: 32px;
   opacity: 1;
   text-align: center;
 }
-.v9_180 {
+.v9_180 button a {
   width: 128px;
   color: rgba(255,255,255,1);
   position: absolute;
   top: 281px;
-  left: 279px;
+  left: 650px;
+
+  text-decoration: none;
+  background-color: transparent; 
+  border: none; 
+  outline: none;
   font-family: Inter;
   font-weight: Regular;
   font-size: 32px;
