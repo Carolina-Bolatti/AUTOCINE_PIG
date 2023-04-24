@@ -1,0 +1,31 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block css %} <link href="{% static 'autocine_pig/registrar/css/main.css' %}" rel="stylesheet" />{% endblock %}
+{% block titulo %} Registrarse / Autocine {% endblock %}
+
+{% block contenido %} 
+
+
+    <div class="v1_5"></div>
+    <div class="v8_18"></div>
+    
+    <span class="v3_15">LOGOTIPO_AUTOCINE</span>
+    <div class="v8_16"></div>
+  
+
+  
+  
+
+
+  
+<form action="" method="POST">
+
+    {% csrf_token %}
+    {{ form.as_p  }}
+
+<input type="submit">
+
+</form>
+
+{% endblock %}
