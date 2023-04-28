@@ -70,3 +70,20 @@ div {
     left: 532px;
     overflow: hidden;
   }
+
+
+
+  footer {
+    background-color: black;
+    color: rgb(243, 235, 235);
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 30px;
+    margin: 0;
+
+}
+
+.redsoc {
+  margin: 0px 10px  100px;
+}

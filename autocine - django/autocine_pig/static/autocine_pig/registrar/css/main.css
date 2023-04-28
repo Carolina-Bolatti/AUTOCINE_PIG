@@ -17,6 +17,7 @@ form {
   padding: 20px;
   border-radius: 10px;
   position: relative;
+  background-color: rgb(27, 26, 26);
 
 }
 
@@ -24,7 +25,6 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="date"],
-input[type="Widget"],
 textarea {
   width: 100%;
   padding: 12px 20px;
@@ -34,8 +34,40 @@ textarea {
   box-sizing: border-box;
 }
 
+#id_fecha_De_Nacimiento_month {
+
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#id_fecha_De_Nacimiento_year {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+}
+
+#id_fecha_De_Nacimiento_day {
+
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+
+}
+
 input[type="submit"] {
-  background-color: #4CAF50;
+  background-color: #2b8a2e;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -48,9 +80,11 @@ input[type="submit"]:hover {
 }
 
 label {
+  font-family: sans-serif;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 5px;
+  color: #fafafa;
 }
 
 .v1_5 {
