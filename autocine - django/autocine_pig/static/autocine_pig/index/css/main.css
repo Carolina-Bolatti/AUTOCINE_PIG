@@ -2,6 +2,8 @@
   
   box-sizing: border-box;
 }
+
+
 body {
   font-size: 14px;
   width: 100%;
@@ -92,8 +94,8 @@ body {
   background-size: cover;
   opacity: 1;
   position: absolute;
-  top: 0px;
-  left: 391px;
+  top: 5px;
+  left: 392px;
   overflow: hidden;
 }
 .v8_19 {

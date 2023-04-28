@@ -1,11 +1,14 @@
 * {
   box-sizing: border-box;
+  
 }
 body {
   font-size: 14px;
   width: 100%;
   margin: 0;
+  
 }
+
 .v9_171 {
   width: 100%;
   height: 1024px;
@@ -181,7 +184,7 @@ body {
   top: 376px;
   left: 428px;
   font-family: Inter;
-  font-weight: Medium Italic;
+  font-weight: normal;
   font-size: 24px;
   opacity: 1;
   text-align: center;
