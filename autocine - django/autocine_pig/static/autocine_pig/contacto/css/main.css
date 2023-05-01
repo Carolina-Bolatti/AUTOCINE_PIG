@@ -10,8 +10,16 @@ body {
 
 form {
 
-  margin-top: 75px;
-  margin-left: 30px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items:baseline;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  position: relative;
+  background-color: rgb(27, 26, 26);
+  
+  
 }
 
 
@@ -76,3 +84,65 @@ form {
 }
 
 
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: rgb(248, 248, 248);
+}
+
+input[type="text"], select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+textarea.area_texto {
+  height: 150px;
+}
+
+input[type="file"] {
+  display: block;
+  margin-top: 10px;
+  color: #e4e4e4;
+}
+
+
+input[type="submit"] {
+  background-color: #2b8a2e;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+
+
+.errorlist {
+
+  color: #db1414;
+}
+
+.mensajes {
+  padding: 20px; 
+}
+
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb; 
+  color: #155724; 
+  padding: 15px; 
+  border-radius: 4px; 
+  margin-bottom: 20px; 
+}
