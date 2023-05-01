@@ -36,35 +36,35 @@ def registrar (request):
         Registrar_Usuario_Form = RegistrarUsuarioForm(request.POST)
 
         if Registrar_Usuario_Form.is_valid():
-            Registrar_Usuario_Form.cleaned_data['nombre']
-            Registrar_Usuario_Form.cleaned_data['apellido']
-            Registrar_Usuario_Form.cleaned_data['mail']
-            Registrar_Usuario_Form.cleaned_data['fecha_De_Nacimiento']
-            Registrar_Usuario_Form.cleaned_data['dni']
-            Registrar_Usuario_Form.cleaned_data['password1']
-            Registrar_Usuario_Form.cleaned_data['password2']
 
-
-        messages.add_message(request, messages.SUCCESS, 'Te Registraste Correctamente')
-        return redirect ('index')
-    
-    
+            
+            messages.add_message(request, messages.SUCCESS, 'Te Registraste Correctamente')
+            return redirect('index')
     else:
-
         Registrar_Usuario_Form = RegistrarUsuarioForm()
-
-    context = {'form' : Registrar_Usuario_Form}
+    return render(request, 'autocine_pig/registrar.html', {'form':  Registrar_Usuario_Form})
+            
+    
+    
+    
 
     
-    return render (request, 'autocine_pig/registrar.html', context)
+
 
 
 
 def contacto (request):
 
-    form = ContactoUsuarioForm() 
-    
-    context = {'form' : form
+    if request.method == 'POST':
+        form = ContactoUsuarioForm(request.POST, request.FILES)
+        if form.is_valid():
+
         
-    }
-    return render(request, 'autocine_pig/contacto.html', context)
+            messages.add_message(request, messages.SUCCESS, '¡Tu mensaje ha sido enviado con éxito!')
+        
+            return redirect('index')
+    
+    else:
+        messages.error(request, 'Por favor, corrige los errores del formulario.')
+        form = ContactoUsuarioForm()
+    return render(request, 'autocine_pig/contacto.html', {'form': form})
