@@ -6,6 +6,7 @@ body {
   font-size: 14px;
   width: 100%;
   margin: 0;
+  background-color: black;
 }
 
 form {
@@ -15,7 +16,7 @@ form {
   font-family: Arial, sans-serif;
   padding: 20px;
   position: relative;
-  background-color: rgb(27, 26, 26);
+  background-color: black;
 
 }
 
