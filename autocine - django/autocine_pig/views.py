@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
-from .forms import RegistrarUsuarioForm, ContactoUsuarioForm
+from .forms import RegistrarUsuarioForm, ContactoUsuarioForm, LoginForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from .models import RegistrarUsuario , Login
+
+
+
+
+
 
 # Create your views here.
 
@@ -28,30 +35,54 @@ def valores (request):
 
     return render(request, 'autocine_pig/valores.html', context)
 
-#aca ↓ defino la vista de registracion para el form
 
-def registrar (request):
+
+def registrar_usuario (request):
 
     if request.method == "POST":
-        Registrar_Usuario_Form = RegistrarUsuarioForm(request.POST)
+        Form = RegistrarUsuarioForm(request.POST)
+        
+        if Form.is_valid():
+            print(Form.cleaned_data)
+            print("hola")
+            nombre = Form.cleaned_data['nombre']
+            print(nombre)
+            apellido = Form.cleaned_data['apellido']
+            mail = Form.cleaned_data['mail']
+            fecha_de_nacimiento = Form.cleaned_data['fecha_de_nacimiento']
+            dni = Form.cleaned_data['dni']
+            password = Form.cleaned_data['password1']
 
-        if Registrar_Usuario_Form.is_valid():
+
+            nuevo_usuario = RegistrarUsuario(
+            nombre=nombre,
+            apellido=apellido,
+            mail=mail,
+            fecha_De_Nacimiento=fecha_de_nacimiento,
+            dni=dni,
+            password=password
+        )
 
             
-            messages.add_message(request, messages.SUCCESS, 'Te Registraste Correctamente')
-            return redirect('index')
+            nuevo_usuario.save()
+
+        
+            nuevo_login = Login(registrar_usuario=nuevo_usuario)
+            nuevo_login.save()
+
+        
+        messages.add_message(request, messages.SUCCESS, 'Te Registraste Correctamente')
+        return redirect('index')
     else:
-        Registrar_Usuario_Form = RegistrarUsuarioForm()
-    return render(request, 'autocine_pig/registrar.html', {'form':  Registrar_Usuario_Form})
+        Form = RegistrarUsuarioForm()
+    return render(request, 'autocine_pig/registrar_usuario.html', {'form':  Form})
+
+
+
+
             
     
     
-    
-
-    
-
-
-
 
 def contacto (request):
 
@@ -68,3 +99,26 @@ def contacto (request):
         messages.error(request, 'Por favor, corrige los errores del formulario.')
         form = ContactoUsuarioForm()
     return render(request, 'autocine_pig/contacto.html', {'form': form})
+
+
+
+
+def nosotros (request):
+    context = {
+
+    }
+
+    return render(request, 'autocine_pig/nosotros.html', context)
+
+
+#dejo todo preparado para configurar el user a la base de datos
+def login (request):
+    form = LoginForm (request.POST or None)
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+    return render(request, 'autocine_pig/login.html', {'form': form})

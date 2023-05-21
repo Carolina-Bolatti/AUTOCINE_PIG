@@ -31,11 +31,10 @@
         </button>
         <div id="MenuNavegacion" class="collapse navbar-collapse">
           <ul class="navbar-nav ms-3">
-            <li class="nav-item"><a class="nav-link"
-                href="# aca tenes que poner el enlace a pagina o al login">LOGIN</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'registrar' %}">Registrarse</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">LOGIN</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'registrar_usuario' %}">Registrarse</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
-            <li class="nav-item"><a class="nav-link" href=".">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a></li>
 
           </ul>
         </div>
