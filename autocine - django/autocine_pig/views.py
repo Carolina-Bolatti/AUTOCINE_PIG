@@ -4,33 +4,32 @@ from django.urls import reverse
 from .forms import RegistrarUsuarioForm, ContactoUsuarioForm, LoginForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from .models import RegistrarUsuario , Login
-
-
-
+from .models import RegistrarUsuario, Login, Pelicula, Complejo
+from django.views.generic import ListView
 
 
 
 # Create your views here.
 
 def index (request):
-    
-    context =  {
-
-}
+    peliculas = Pelicula.objects.all()
+    context = {
+        'peliculas' : peliculas
+    }
 
     return render (request, 'autocine_pig/index.html', context)
 
 def complejos (request):
+    complejos = Complejo.objects.all()
 
     context = {
+        'complejos' : complejos
     }
 
     return render (request, 'autocine_pig/complejos.html', context)
 
 def valores (request):
     context = {
-
     }
 
     return render(request, 'autocine_pig/valores.html', context)
@@ -38,20 +37,16 @@ def valores (request):
 
 
 def registrar_usuario (request):
-
     if request.method == "POST":
         Form = RegistrarUsuarioForm(request.POST)
         
         if Form.is_valid():
-            print(Form.cleaned_data)
-            print("hola")
             nombre = Form.cleaned_data['nombre']
-            print(nombre)
             apellido = Form.cleaned_data['apellido']
             mail = Form.cleaned_data['mail']
             fecha_de_nacimiento = Form.cleaned_data['fecha_de_nacimiento']
             dni = Form.cleaned_data['dni']
-            password = Form.cleaned_data['password1']
+            password = Form.cleaned_data['password']
 
 
             nuevo_usuario = RegistrarUsuario(
@@ -64,11 +59,10 @@ def registrar_usuario (request):
         )
 
             
-            nuevo_usuario.save()
-
-        
-            nuevo_login = Login(registrar_usuario=nuevo_usuario)
-            nuevo_login.save()
+        nuevo_usuario.save()
+    
+        nuevo_login = Login(registrar_usuario=nuevo_usuario)
+        nuevo_login.save()
 
         
         messages.add_message(request, messages.SUCCESS, 'Te Registraste Correctamente')
@@ -89,7 +83,6 @@ def contacto (request):
     if request.method == 'POST':
         form = ContactoUsuarioForm(request.POST, request.FILES)
         if form.is_valid():
-
         
             messages.add_message(request, messages.SUCCESS, '¡Tu mensaje ha sido enviado con éxito!')
         

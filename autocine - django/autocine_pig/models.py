@@ -4,7 +4,7 @@ class RegistrarUsuario (models.Model):
     nombre = models.CharField (max_length= 128, verbose_name= "Nombre")
     apellido = models.CharField (max_length= 128, verbose_name= "Apellido")
     mail = models.EmailField (max_length= 128, verbose_name= "Email")
-    fecha_De_Nacimiento = models.DateField (verbose_name= "Fecha de Nacimiento", default='1900-01-01')
+    fecha_de_nacimiento = models.DateField (verbose_name= "Fecha de Nacimiento", default='1900-01-01')
     dni = models.IntegerField (verbose_name= "DNI: ",  null= True)
     password = models.CharField (max_length=128, null=True)
 
@@ -19,3 +19,21 @@ class Login (models.Model):
     def __str__(self):
         return f"Login de {self.registrar_usuario}"
     
+class Pelicula(models.Model):
+    titulo = models.CharField (max_length= 128, verbose_name= "Titulo")
+    director = models.CharField (max_length= 128, verbose_name= "Director")
+    actor_ppl = models.CharField (max_length= 128, verbose_name= "Actor Principal")
+
+    def __str__(self):
+        return f"{self.titulo} de {self.director} con {self.actor_ppl}"
+    
+class Complejo(models.Model):
+    nombre = models.CharField (max_length= 128, verbose_name= "Complejo")
+    direccion = models.CharField (max_length= 256, verbose_name= "Direccion")
+    peliculas = models.ManyToManyField(Pelicula, related_name="Peliculas")
+
+    def __str__(self):
+        pelis = 'Peliculas:'
+        for p in self.peliculas.all():
+            pelis = pelis + ' [' + str(p) + ']'
+        return f"{self.nombre} direccion: {self.direccion} {pelis}"

@@ -23,14 +23,16 @@ Complejos
     <div class="v9_91"></div>
     <div class="v9_92"></div>
     <div class="v9_93"></div>
-    <span class="v9_94">Complejos ubicados en Palermo</span
-    ><span class="v9_95"
-      >Complejo 1Lagos de Palermo 1(Lago de Regatas)Av. De Los Ombúes y Av.
-      Pres. Figueroa Alcorta</span
-    ><span class="v9_96"
-      >Complejo 2Lagos de Palermo 2(Plaza Holanda)Av. Del Libertador y Av.
-      Sarmiento</span
-    >
+    <span class="v9_94">Complejos ubicados en Palermo</span>
+  
+          <span class="v9_95">
+            {% for complejo in complejos %}
+            <p>{{complejo}}
+              </p>
+            {% endfor %}
+          </span>
+  
+
   </div>
 
 {% endblock %}
