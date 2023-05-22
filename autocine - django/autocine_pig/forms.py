@@ -22,20 +22,19 @@ class RegistrarUsuarioForm(forms.Form):
     fecha_de_nacimiento = forms.DateField(widget=forms.DateInput(attrs={'type' : 'date'}))
     dni = forms.CharField(label= "DNI ", max_length=8, validators=[RegexValidator(regex=r'^\d{8}$',
         message='El DNI ingresado no es válido', code='invalid_dni')], required= True)
-    password1 = forms.CharField(label="Contraseña", max_length=12, min_length=6, widget=forms.PasswordInput())
+    password = forms.CharField(label="Contraseña", max_length=12, min_length=6, widget=forms.PasswordInput())
     password2 = forms.CharField(label="Repita Contraseña",max_length=12, min_length=6, widget=forms.PasswordInput())
     
 
-    def clean(self):
-        password1 = self.cleaned_data.get('password1')
+    def clean_password(self):
+        password = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
 
-        if password1 and password2 and password1 != password2:
+        if password and password2 and password != password2:
             raise forms.ValidationError('Las contraseñas no coinciden')
             
         
-        return self
-    
+        return password
 
 
 class ContactoUsuarioForm(forms.Form):
@@ -50,7 +49,6 @@ class ContactoUsuarioForm(forms.Form):
         cleaned_data = super().clean()
         consulta = cleaned_data.get('consulta')
        
-
         if consulta == '':
             self.add_error('consulta', 'Debe seleccionar una opción')
 
