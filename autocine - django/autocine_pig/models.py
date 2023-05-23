@@ -4,7 +4,7 @@ class RegistrarUsuario (models.Model):
     nombre = models.CharField (max_length= 128, verbose_name= "Nombre")
     apellido = models.CharField (max_length= 128, verbose_name= "Apellido")
     mail = models.EmailField (max_length= 128, verbose_name= "Email")
-    fecha_de_nacimiento = models.DateField (verbose_name= "Fecha de Nacimiento", default='1900-01-01')
+    fecha_de_nacimiento = models.DateField (verbose_name= "Fecha_de_Nacimiento", default='1900-01-01')
     dni = models.IntegerField (verbose_name= "DNI: ",  null= True)
     password = models.CharField (max_length=128, null=True)
 

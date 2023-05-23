@@ -53,7 +53,7 @@ def registrar_usuario (request):
             nombre=nombre,
             apellido=apellido,
             mail=mail,
-            fecha_De_Nacimiento=fecha_de_nacimiento,
+            fecha_de_nacimiento=fecha_de_nacimiento,
             dni=dni,
             password=password
         )
