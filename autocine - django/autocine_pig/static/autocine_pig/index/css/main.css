@@ -268,5 +268,54 @@ body {
   
 }
 
+.listado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: black;
+  border: 1px solid black;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.listado form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  color: antiquewhite;
+}
+
+.listado label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.listado select {
+  width: 200px;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 3px;
+  border: 1px solid #070202;
+  margin-bottom: 10px;
+}
+
+.listado button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.listado button:hover {
+  background-color: #45a049;
+}
+
+
+
 
 
