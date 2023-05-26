@@ -1,38 +1,79 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 from .forms import RegistrarUsuarioForm, ContactoUsuarioForm, LoginForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from .models import RegistrarUsuario, Login, Pelicula, Complejo
+from .models import RegistrarUsuario, Login, Pelicula, Complejo, Valor
 from django.views.generic import ListView
 
 
 
 # Create your views here.
 
-def index (request):
+def index (request, pelicula_id=None):
     peliculas = Pelicula.objects.all()
     context = {
-        'peliculas' : peliculas
+        'peliculas' : peliculas,
+        'pelicula_id': pelicula_id,
     }
 
     return render (request, 'autocine_pig/index.html', context)
 
-def complejos (request):
-    complejos = Complejo.objects.all()
+def complejos (request, pelicula_id=None):
+    if request.method == 'POST':
+        pelicula_id = request.POST.get('pelicula_id')
+        pelicula = Pelicula.objects.get(id=pelicula_id)
+        complejos = Complejo.objects.filter(peliculas=pelicula)
+        
 
+        context = {
+            'pelicula': pelicula,
+            'complejos': complejos,
+            'pelicula_id': pelicula_id,
+            
+        }
+
+        return render(request, 'autocine_pig/complejos.html', context)
+
+    peliculas = Pelicula.objects.all()
     context = {
-        'complejos' : complejos
+        'peliculas': peliculas
     }
 
-    return render (request, 'autocine_pig/complejos.html', context)
+    return render(request, 'autocine_pig/complejos.html', context)
 
-def valores (request):
+
+
+def valores(request, pelicula_id=None):
+    if request.method == 'POST':
+        pelicula_id = request.POST.get('pelicula_id')
+        pelicula = get_object_or_404(Pelicula, id=pelicula_id)
+        complejos = Complejo.objects.filter(peliculas=pelicula)
+        valores = Valor.objects.filter(peliculas=pelicula)
+        
+
+        context = {
+            'pelicula': pelicula,
+            'complejos': complejos,
+            'valores': valores,
+            'pelicula_id': pelicula_id
+        }
+
+        return render(request, 'autocine_pig/valores.html', context)
+
+    peliculas = Pelicula.objects.all()
     context = {
+        'peliculas': peliculas,
+        
     }
 
     return render(request, 'autocine_pig/valores.html', context)
+
+
+
+
+
 
 
 
@@ -59,10 +100,10 @@ def registrar_usuario (request):
         )
 
             
-        nuevo_usuario.save()
+            nuevo_usuario.save()
     
-        nuevo_login = Login(registrar_usuario=nuevo_usuario)
-        nuevo_login.save()
+            nuevo_login = Login(registrar_usuario=nuevo_usuario)
+            nuevo_login.save()
 
         
         messages.add_message(request, messages.SUCCESS, 'Te Registraste Correctamente')

@@ -262,3 +262,20 @@ body {
   opacity: 1;
   text-align: center;
 }
+
+
+.v10_2 h2 {
+
+  color: aliceblue;
+  margin: 20px;
+  padding: 20px;
+  text-align: justify;
+}
+
+.v10_2 p {
+
+  color: aliceblue;
+  margin: 20px;
+  padding: 20px;
+  text-align: justify;
+}

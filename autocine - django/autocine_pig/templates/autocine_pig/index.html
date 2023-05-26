@@ -1,11 +1,12 @@
 {%extends './base.html' %}
 {% load static %}
 
-{% block css %}   <link href="{% static 'autocine_pig/index/css/main.css' %}" rel="stylesheet" />{% endblock %}
+{% block css %}
+<link href="{% static 'autocine_pig/index/css/main.css' %}" rel="stylesheet" />{% endblock %}
 {% block titulo %} Miradas Fugaces / Autocine {% endblock %}
 
-{% block contenido %}  
-  <div class="v0_3">
+{% block contenido %}
+<div class="v0_3">
   <div class="v1_5"></div>
   <div class="v8_18"></div>
   <div class="v8_17"></div>
@@ -13,11 +14,19 @@
   <div class="v2_14"></div>
   <span class="v3_15">LOGOTIPO_AUTOCINE</span>
   <div class="v8_16"></div>
-  <div class="v8_19"></div>  
-  <a href="{% url 'complejos' %}"><div class="v9_20"></div></a>  
-  <a href="{% url 'complejos' %}"><div class="v9_21"></div></a>
-  <a href="{% url 'complejos' %}"><div class="v9_22"></div></a>
-  <a href="{% url 'complejos' %}"><div class="v9_23"></div></a>
+  <div class="v8_19"></div>
+  <a href="{% url 'complejos' %}">
+    <div class="v9_20"></div>
+  </a>
+  <a href="{% url 'complejos' %}">
+    <div class="v9_21"></div>
+  </a>
+  <a href="{% url 'complejos' %}">
+    <div class="v9_22"></div>
+  </a>
+  <a href="{% url 'complejos' %}">
+    <div class="v9_23"></div>
+  </a>
   <div class="v9_28"></div>
   <div class="v9_24"></div>
   <span class="v9_27">Seleccioná la película para ver días y horarios</span>
@@ -26,12 +35,24 @@
   <span class="v9_99"><button><a href="{% url 'valores' %}">Valores</a></button></span>
 </div>
 
-</div>
-<ul>
-  {% for pelicula in peliculas %}
-      <li>{{pelicula}}
-      </li>
-  {% endfor %}
-</ul>
-{% endblock %}
+<section class="listado">
+  <form method="post" action="{% url 'complejos' %}?pelicula_id={{ pelicula_id }}">
+    {% csrf_token %}
+    <label for="pelicula">Seleccione una película:</label>
+    <select name="pelicula_id" id="pelicula">
+      {% for pelicula in peliculas %}
+      <option value="{{ pelicula.id }}">{{ pelicula.titulo }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Seleccionar</button>
+  </form>
+</section>
 
+</div>
+
+
+
+
+
+
+{% endblock %}
