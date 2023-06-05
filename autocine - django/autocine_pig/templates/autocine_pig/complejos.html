@@ -36,7 +36,7 @@ Complejos
         <ul>
           {% for complejo in complejos %}
             <li>
-              <a href="{% url 'valores' %}">
+              <a href="{% url 'valores' %}?pelicula_id={{pelicula.id}}">
                 {{ complejo.nombre }}, {{ complejo.direccion }}
               </a>
               

@@ -36,7 +36,7 @@
 </div>
 
 <section class="listado">
-  <form method="post" action="{% url 'complejos' %}?pelicula_id={{ pelicula_id }}">
+  <form method="post" action="{% url 'complejos' %}">
     {% csrf_token %}
     <label for="pelicula">Seleccione una película:</label>
     <select name="pelicula_id" id="pelicula">
