@@ -25,7 +25,7 @@ def complejos (request, pelicula_id=None):
         pelicula_id = request.POST.get('pelicula_id')
         pelicula = Pelicula.objects.get(id=pelicula_id)
         complejos = Complejo.objects.filter(peliculas=pelicula)
-        
+
 
         context = {
             'pelicula': pelicula,
@@ -46,8 +46,10 @@ def complejos (request, pelicula_id=None):
 
 
 def valores(request, pelicula_id=None):
+
     if request.method == 'POST':
         pelicula_id = request.POST.get('pelicula_id')
+
         pelicula = get_object_or_404(Pelicula, id=pelicula_id)
         complejos = Complejo.objects.filter(peliculas=pelicula)
         valores = Valor.objects.filter(peliculas=pelicula)
@@ -61,11 +63,15 @@ def valores(request, pelicula_id=None):
         }
 
         return render(request, 'autocine_pig/valores.html', context)
-
+    pelicula_id=request.GET.get('pelicula_id', '')
     peliculas = Pelicula.objects.all()
+    pelicula = Pelicula.objects.filter(id=pelicula_id)[0]
+    valores = Valor.objects.filter(pelicula_id=pelicula_id)
     context = {
         'peliculas': peliculas,
-        
+        'pelicula': pelicula,
+        'pelicula_id': pelicula_id,
+        'valores': valores
     }
 
     return render(request, 'autocine_pig/valores.html', context)
