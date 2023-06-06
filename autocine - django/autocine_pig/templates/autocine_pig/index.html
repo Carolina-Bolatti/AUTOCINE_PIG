@@ -33,6 +33,9 @@
   <span class="v9_97"><button><a href="{% url 'index' %}">Cartelera</a></button></span>
   <span class="v9_98"><button><a href="{% url 'complejos' %}">Complejos</a></button></span>
   <span class="v9_99"><button><a href="{% url 'valores' %}">Valores</a></button></span>
+  {% if user.is_authenticated %}
+  <span class="v9_99a"><button><a href="{% url 'reserva' %}">Reservar</a></button></span>
+  {% endif %}
 </div>
 
 <section class="listado">

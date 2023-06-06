@@ -17,6 +17,9 @@ Complejos
   <span class="v9_83"><button><a href="{% url 'index' %}">Cartelera</a></button></span>
   <span class="v9_84"><button><a href="{% url 'complejos' %}">Complejos</a></button></span>
   <span class="v9_85"><button><a href="{% url 'valores' %}">Valores</a></button></span>
+  {% if user.is_authenticated %}
+  <span class="v9_85a"><button><a href="{% url 'reserva' %}">Reservar</a></button></span>
+  {% endif %}
   <div class="v9_87"></div>
   <span class="v9_88">LOGOTIPOAUTOCINE </span>
   <div class="v9_89"></div>
@@ -25,8 +28,6 @@ Complejos
   <div class="v9_92"></div>
   <div class="v9_93"></div>
   <span class="v9_94">Complejos ubicados en Palermo</span>
-
-
 
 
   <span class="v9_95">
@@ -51,6 +52,7 @@ Complejos
     {% endif %}
   </span>
 
+  
 
 
 
