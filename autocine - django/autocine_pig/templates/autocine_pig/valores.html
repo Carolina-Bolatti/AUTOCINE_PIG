@@ -21,6 +21,10 @@ Valores
     <span class="v9_178"><button><a href="{% url 'index' %}">Cartelera</a></button></span>
     <span class="v9_179"><button><a href="{% url 'complejos' %}">Complejos</a></button></span>
     <span class="v9_180"><button><a href="{% url 'valores' %}">Valores</a></button></span>
+    {% if user.is_authenticated %}
+    <span class="v9_180a"><button><a href="{% url 'reserva' %}">Reservar</a></button></span>
+    {% endif %}
+  
     <div class="v9_181"></div>
     <span class="v9_182">LOGOTIPOAUTOCINE </span>
     <div class="v9_183"></div>
