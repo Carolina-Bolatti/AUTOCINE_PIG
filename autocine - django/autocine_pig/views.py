@@ -68,7 +68,6 @@ def valores(request, pelicula_id=None):
         }
 
         return render(request, 'autocine_pig/valores.html', context)
-    
     pelicula_id=request.GET.get('pelicula_id', '')
     peliculas = Pelicula.objects.all()
     pelicula = Pelicula.objects.filter(id=pelicula_id)[0]
