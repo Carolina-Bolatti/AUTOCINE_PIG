@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 
 from .forms import ContactoUsuarioForm, UserRegisterForm
@@ -8,8 +7,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
-from .models import RegistrarUsuario, Login, Pelicula, Complejo, Valor
-from django.views.generic import ListView
+from .models import Pelicula, Complejo, Valor
+
 
 
 
@@ -24,7 +23,6 @@ def index (request, pelicula_id=None):
     }
 
     return render (request, 'autocine_pig/index.html', context)
-
 
 def complejos (request, pelicula_id=None):
     if request.method == 'POST':
@@ -49,7 +47,6 @@ def complejos (request, pelicula_id=None):
 
     return render(request, 'autocine_pig/complejos.html', context)
 
-
 def valores(request, pelicula_id=None):
 
     if request.method == 'POST':
@@ -68,7 +65,6 @@ def valores(request, pelicula_id=None):
         }
 
         return render(request, 'autocine_pig/valores.html', context)
-    
     pelicula_id=request.GET.get('pelicula_id', '')
     peliculas = Pelicula.objects.all()
     pelicula = Pelicula.objects.filter(id=pelicula_id)[0]

@@ -11,7 +11,6 @@ class RegistrarUsuario (models.Model):
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
 
-
 class Login (models.Model):
     registrar_usuario = models.ForeignKey(RegistrarUsuario, on_delete=models.CASCADE)
     login_time = models.DateTimeField(auto_now_add=True)
@@ -37,9 +36,7 @@ class Complejo(models.Model):
         for p in self.peliculas.all():
             pelis = pelis + ' [' + str(p) + ']'
         return f"{self.nombre} direccion: {self.direccion} {pelis}"
-    
-
-    
+        
 class Valor(models.Model):
     pelicula = models.ForeignKey(Pelicula, on_delete=models.CASCADE)
     valor = models.CharField(max_length=128, verbose_name="Valor")
