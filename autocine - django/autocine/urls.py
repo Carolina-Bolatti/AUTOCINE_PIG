@@ -17,7 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+# Definimos las estructuras admin y accounts dentro de la solución
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('autocine_pig/admin/', admin.site.urls),
+    path('autocine_pig/accounts/', include('django.contrib.auth.urls')),
     path('autocine_pig/', include ('autocine_pig.urls'))
 ]

@@ -1,0 +1,15 @@
+{% extends 'autocine_pig/base.html' %}
+{% load static %}
+
+{% block css %} <link href="{% static 'autocine_pig/login/css/main.css' %}" rel="stylesheet" />{% endblock %}
+{% block titulo %} Logout {% endblock %}
+
+{% block contenido %} 
+
+{% block content %}
+<p>Logged out!</p>
+
+<a href="{% url 'login'%}">Click here to login again.</a>
+{% endblock %}
+
+{% endblock %}

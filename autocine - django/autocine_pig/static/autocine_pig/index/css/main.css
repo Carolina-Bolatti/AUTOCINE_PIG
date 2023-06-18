@@ -218,7 +218,7 @@ body {
   color: rgba(255,255,255,1);
   position: absolute;
   top: 280px;
-  left: 138px;
+  left: 100px;
 
   text-decoration: none;
   background-color: transparent; 
@@ -236,7 +236,7 @@ body {
   color: rgba(255,255,255,1);
   position: absolute;
   top: 280px;
-  left: 1050px;
+  left: 450px;
 
   text-decoration: none;
   background-color: transparent; 
@@ -254,7 +254,26 @@ body {
   color: rgba(255,255,255,1);
   position: absolute;
   top: 280px;
-  left: 650px;
+  left: 850px;
+
+  text-decoration: none;
+  background-color: transparent; 
+  border: none; 
+  outline: none;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 32px;
+  opacity: 1;
+  text-align: center;
+  
+}
+
+.v9_99a button a {
+  width: 128px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 280px;
+  left: 1140px;
 
   text-decoration: none;
   background-color: transparent; 

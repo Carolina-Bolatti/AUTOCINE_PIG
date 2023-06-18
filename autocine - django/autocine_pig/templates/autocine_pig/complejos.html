@@ -17,6 +17,9 @@ Complejos
   <span class="v9_83"><button><a href="{% url 'index' %}">Cartelera</a></button></span>
   <span class="v9_84"><button><a href="{% url 'complejos' %}">Complejos</a></button></span>
   <span class="v9_85"><button><a href="{% url 'valores' %}">Valores</a></button></span>
+  {% if user.is_authenticated %}
+  <span class="v9_85a"><button><a href="{% url 'reserva' %}">Reservar</a></button></span>
+  {% endif %}
   <div class="v9_87"></div>
   <span class="v9_88">LOGOTIPOAUTOCINE </span>
   <div class="v9_89"></div>
@@ -27,8 +30,6 @@ Complejos
   <span class="v9_94">Complejos ubicados en Palermo</span>
 
 
-
-
   <span class="v9_95">
     {% if pelicula and pelicula.id %}
       <h2>La Película "{{ pelicula.titulo }}" está disponible para verla en:</h2>
@@ -36,7 +37,7 @@ Complejos
         <ul>
           {% for complejo in complejos %}
             <li>
-              <a href="{% url 'valores' %}">
+              <a href="{% url 'valores' %}?pelicula_id={{pelicula.id}}">
                 {{ complejo.nombre }}, {{ complejo.direccion }}
               </a>
               
@@ -51,6 +52,7 @@ Complejos
     {% endif %}
   </span>
 
+  
 
 
 

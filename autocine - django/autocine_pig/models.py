@@ -39,7 +39,7 @@ class Complejo(models.Model):
         return f"{self.nombre} direccion: {self.direccion} {pelis}"
     
 
-
+    
 class Valor(models.Model):
     pelicula = models.ForeignKey(Pelicula, on_delete=models.CASCADE)
     valor = models.CharField(max_length=128, verbose_name="Valor")

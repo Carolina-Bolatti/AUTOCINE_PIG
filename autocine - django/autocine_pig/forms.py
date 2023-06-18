@@ -1,9 +1,7 @@
 from django import forms
-from datetime import date
 from django.core.validators import RegexValidator
-
-
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 
@@ -14,28 +12,6 @@ TYPE_CHOICES = [
     ('Otro', 'Otro'),
 
 ]
-
-class RegistrarUsuarioForm(forms.Form):
-    nombre = forms.CharField(label= "Nombre ", required= True)
-    apellido = forms.CharField(label= "Apellido ", required= True)
-    mail = forms.EmailField(label= "Email ", required= True)
-    fecha_de_nacimiento = forms.DateField(widget=forms.DateInput(attrs={'type' : 'date'}))
-    dni = forms.CharField(label= "DNI ", max_length=8, validators=[RegexValidator(regex=r'^\d{8}$',
-        message='El DNI ingresado no es válido', code='invalid_dni')], required= True)
-    password = forms.CharField(label="Contraseña", max_length=12, min_length=6, widget=forms.PasswordInput())
-    password2 = forms.CharField(label="Repita Contraseña",max_length=12, min_length=6, widget=forms.PasswordInput())
-    
-
-    def clean_password(self):
-        password = self.cleaned_data.get('password1')
-        password2 = self.cleaned_data.get('password2')
-
-        if password and password2 and password != password2:
-            raise forms.ValidationError('Las contraseñas no coinciden')
-            
-        
-        return password
-
 
 class ContactoUsuarioForm(forms.Form):
 
@@ -53,9 +29,15 @@ class ContactoUsuarioForm(forms.Form):
             self.add_error('consulta', 'Debe seleccionar una opción')
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField(label='Nombre de usuario')
-    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
-        
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField(label= "Email ", required= True)
+    fecha_de_nacimiento = forms.DateField(widget=forms.DateInput(attrs={'type' : 'date'}))
+    dni = forms.CharField(label= "DNI ", max_length=8, validators=[RegexValidator(regex=r'^\d{8}$',
+       message='El DNI ingresado no es válido', code='invalid_dni')], required= True)
+    # password = forms.CharField(label="Contraseña", max_length=12, min_length=6, widget=forms.PasswordInput())
+    # password2 = forms.CharField(label="Confirma Contraseña",max_length=12, min_length=6, widget=forms.PasswordInput())
     
-    
+    class Meta:
+        model = User
+        fields = ['username', 'dni','fecha_de_nacimiento', 'email']
+        help_texts = {k:"" for k in fields }  
