@@ -51,8 +51,10 @@ def complejos (request, pelicula_id=None):
 
 
 def valores(request, pelicula_id=None):
+
     if request.method == 'POST':
         pelicula_id = request.POST.get('pelicula_id')
+
         pelicula = get_object_or_404(Pelicula, id=pelicula_id)
         complejos = Complejo.objects.filter(peliculas=pelicula)
         valores = Valor.objects.filter(pelicula=pelicula)
@@ -73,6 +75,8 @@ def valores(request, pelicula_id=None):
         valores = None
 
     peliculas = Pelicula.objects.all()
+    pelicula = Pelicula.objects.filter(id=pelicula_id)[0]
+    valores = Valor.objects.filter(pelicula_id=pelicula_id)
     context = {
         'peliculas': peliculas,
         'pelicula': pelicula,
