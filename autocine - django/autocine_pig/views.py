@@ -57,18 +57,23 @@ def valores(request, pelicula_id=None):
 
         pelicula = get_object_or_404(Pelicula, id=pelicula_id)
         complejos = Complejo.objects.filter(peliculas=pelicula)
-        valores = Valor.objects.filter(peliculas=pelicula)
-        
-
+        valores = Valor.objects.filter(pelicula=pelicula)
         context = {
             'pelicula': pelicula,
             'complejos': complejos,
             'valores': valores,
             'pelicula_id': pelicula_id
         }
-
         return render(request, 'autocine_pig/valores.html', context)
-    pelicula_id=request.GET.get('pelicula_id', '')
+
+    pelicula_id = request.GET.get('pelicula_id')
+    if pelicula_id:
+        pelicula = get_object_or_404(Pelicula, id=pelicula_id)
+        valores = Valor.objects.filter(pelicula=pelicula)
+    else:
+        pelicula = None
+        valores = None
+
     peliculas = Pelicula.objects.all()
     pelicula = Pelicula.objects.filter(id=pelicula_id)[0]
     valores = Valor.objects.filter(pelicula_id=pelicula_id)
@@ -78,7 +83,6 @@ def valores(request, pelicula_id=None):
         'pelicula_id': pelicula_id,
         'valores': valores
     }
-
     return render(request, 'autocine_pig/valores.html', context)
 
 def contacto (request):

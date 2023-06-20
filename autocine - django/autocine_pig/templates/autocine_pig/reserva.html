@@ -1,1 +1,53 @@
-<h1>hola</h1>
+{% extends './base.html' %}
+
+{% load static %}
+
+{% block css %} <link href="{% static 'autocine_pig/valores/css/main.css' %}" rel="stylesheet" />
+
+
+      
+{% endblock %}
+
+{% block titulo %} 
+Valores
+{% endblock %}
+
+{% block contenido %} 
+    <div class="v9_171">
+    <div class="v9_172"></div>
+    <div class="v9_175"></div>
+    <div class="v9_176"></div>
+    <div class="v9_177"></div>
+    <span class="v9_178"><button><a href="{% url 'index' %}">Cartelera</a></button></span>
+    <span class="v9_179"><button><a href="{% url 'complejos' %}">Complejos</a></button></span>
+    <span class="v9_180"><button><a href="{% url 'valores' %}">Valores</a></button></span>
+    {% if user.is_authenticated %}
+    <span class="v9_180a"><button><a href="{% url 'reserva' %}">Reservar</a></button></span>
+    {% endif %}
+  
+    <div class="v9_181"></div>
+    <span class="v9_182">LOGOTIPOAUTOCINE </span>
+    <div class="v9_183"></div>
+    <div class="v9_184"></div>
+    <div class="v9_186"></div>
+    <div class="v9_187"></div>
+    <span class="v9_188">Ticket de Reserva</span>
+    
+    
+    <div class="v10_5"></div>
+    <span class="v10_6">Para consultas puede mandar mail a: </span
+    ><span class="v10_7">consultas@miradas.fugaces.com</span>
+  </div>
+
+  
+
+        
+    </div>
+ 
+
+  
+    
+  
+
+
+{% endblock %}

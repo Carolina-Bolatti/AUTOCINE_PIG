@@ -36,7 +36,11 @@ Valores
       {% if valores %}
         <ul>
           {% for valor in valores %}
-            <li>{{ valor.valor }}</li>
+            <li>
+              <a href="{% url 'reserva' %}">
+                {{ valor.valor }}
+              </a>
+              </li>
           {% endfor %}
         </ul>
       {% else %}
