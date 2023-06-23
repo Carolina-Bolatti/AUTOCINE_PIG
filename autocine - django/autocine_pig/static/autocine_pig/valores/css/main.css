@@ -226,11 +226,13 @@ body {
   top: 449px;
   left: 497px;
   border: 10px solid rgba(255,255,255,0.6200000047683716);
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
   overflow: hidden;
+  color: aliceblue;
+  text-decoration: none;
 }
 .v10_3 {
   width: 374px;
@@ -281,18 +283,22 @@ body {
 }
 
 
-.v10_2 h2 {
+.v10_2 li {
 
   color: aliceblue;
   margin: 20px;
   padding: 20px;
   text-align: justify;
+  font-size: x-large;
+  text-decoration: none;
 }
 
-.v10_2 p {
+.v10_2 a {
 
-  color: aliceblue;
+  color: rgb(9, 231, 28);
   margin: 20px;
   padding: 20px;
   text-align: justify;
+  text-decoration: none;
+  
 }
