@@ -2,15 +2,15 @@
 
 {% load static %}
 
-{% block css %} <link href="{% static 'autocine_pig/valores/css/main.css' %}" rel="stylesheet" />
 
+{% block css %} <link href="{% static 'autocine_pig/reserva/css/main.css' %}" rel="stylesheet" />
 
-      
 {% endblock %}
 
 {% block titulo %} 
-Valores
+Reserva
 {% endblock %}
+
 
 {% block contenido %} 
     <div class="v9_171">
@@ -31,23 +31,18 @@ Valores
     <div class="v9_184"></div>
     <div class="v9_186"></div>
     <div class="v9_187"></div>
-    <span class="v9_188">Ticket de Reserva</span>
-    
-    
+
+    <span class="v9_188">Reserva de Entrada</span>
+    <div class="v10_2">
+        <h2>Estimado/a {{ user.get_username | upper }} su Reserva fue Realizada con Exito.</h2>
+
+        <p>Recuerde presentarse 15 minutos antes de la función</p>
+    </div>
     <div class="v10_5"></div>
     <span class="v10_6">Para consultas puede mandar mail a: </span
     ><span class="v10_7">consultas@miradas.fugaces.com</span>
-  </div>
-
-  
-
-        
     </div>
- 
-
-  
-    
-  
-
 
 {% endblock %}
+      
+

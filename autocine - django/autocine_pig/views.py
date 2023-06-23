@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 
 from .forms import ContactoUsuarioForm, UserRegisterForm
@@ -8,8 +7,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
-from .models import RegistrarUsuario, Login, Pelicula, Complejo, Valor
-from django.views.generic import ListView
+from .models import Pelicula, Complejo, Valore
+
 
 
 
@@ -24,7 +23,6 @@ def index (request, pelicula_id=None):
     }
 
     return render (request, 'autocine_pig/index.html', context)
-
 
 def complejos (request, pelicula_id=None):
     if request.method == 'POST':
@@ -41,23 +39,22 @@ def complejos (request, pelicula_id=None):
         }
 
         return render(request, 'autocine_pig/complejos.html', context)
-
-    peliculas = Pelicula.objects.all()
+    if request.method == 'GET':
+#    peliculas = Pelicula.objects.all()
+     complejos = Complejo.objects.all()
     context = {
-        'peliculas': peliculas
+#        'peliculas': peliculas
+        'complejos': complejos
     }
 
     return render(request, 'autocine_pig/complejos.html', context)
 
-
 def valores(request, pelicula_id=None):
-
     if request.method == 'POST':
         pelicula_id = request.POST.get('pelicula_id')
-
         pelicula = get_object_or_404(Pelicula, id=pelicula_id)
         complejos = Complejo.objects.filter(peliculas=pelicula)
-        valores = Valor.objects.filter(pelicula=pelicula)
+        valores = Valore.objects.filter(pelicula=pelicula)
         context = {
             'pelicula': pelicula,
             'complejos': complejos,
@@ -69,14 +66,12 @@ def valores(request, pelicula_id=None):
     pelicula_id = request.GET.get('pelicula_id')
     if pelicula_id:
         pelicula = get_object_or_404(Pelicula, id=pelicula_id)
-        valores = Valor.objects.filter(pelicula=pelicula)
+        valores = Valore.objects.filter(pelicula=pelicula)
     else:
         pelicula = None
         valores = None
 
     peliculas = Pelicula.objects.all()
-    pelicula = Pelicula.objects.filter(id=pelicula_id)[0]
-    valores = Valor.objects.filter(pelicula_id=pelicula_id)
     context = {
         'peliculas': peliculas,
         'pelicula': pelicula,
