@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
-from .models import Pelicula, Complejo, Valor
+from .models import Pelicula, Complejo, Valore
 
 
 
@@ -39,10 +39,12 @@ def complejos (request, pelicula_id=None):
         }
 
         return render(request, 'autocine_pig/complejos.html', context)
-
-    peliculas = Pelicula.objects.all()
+    if request.method == 'GET':
+#    peliculas = Pelicula.objects.all()
+     complejos = Complejo.objects.all()
     context = {
-        'peliculas': peliculas
+#        'peliculas': peliculas
+        'complejos': complejos
     }
 
     return render(request, 'autocine_pig/complejos.html', context)
@@ -54,11 +56,17 @@ def valores(request, pelicula_id=None):
 
         pelicula = get_object_or_404(Pelicula, id=pelicula_id)
         complejos = Complejo.objects.filter(peliculas=pelicula)
+<<<<<<< Updated upstream
         valores = Valor.objects.filter(pelicula=pelicula)
+=======
+        valores = Valore.objects.filter(peliculas=pelicula)
+        
+
+>>>>>>> Stashed changes
         context = {
             'pelicula': pelicula,
             'complejos': complejos,
-            'valores': valores,
+            'valore': valores,
             'pelicula_id': pelicula_id
         }
         return render(request, 'autocine_pig/valores.html', context)
@@ -73,7 +81,7 @@ def valores(request, pelicula_id=None):
 
     peliculas = Pelicula.objects.all()
     pelicula = Pelicula.objects.filter(id=pelicula_id)[0]
-    valores = Valor.objects.filter(pelicula_id=pelicula_id)
+    valores = Valore.objects.filter(pelicula_id=pelicula_id)
     context = {
         'peliculas': peliculas,
         'pelicula': pelicula,

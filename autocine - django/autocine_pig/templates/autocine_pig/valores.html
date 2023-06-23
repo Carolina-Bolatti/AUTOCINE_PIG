@@ -32,21 +32,33 @@ Valores
     <div class="v9_186"></div>
     <div class="v9_187"></div>
     <span class="v9_188">Valores de Cartelera</span>
-    <div class="v10_2"><h2>La Pelicula "{{ pelicula.titulo }}" tiene los siguientes valores:</h2>
+    <div class="v10_2"><h2>La Pelicula "{{ pelicula.titulo }}" tiene el siguiente valor:</h2>
       {% if valores %}
         <ul>
           {% for valor in valores %}
+<<<<<<< Updated upstream
             <li>
               <a href="{% url 'reserva' %}">
                 {{ valor.valor }}
               </a>
               </li>
           {% endfor %}
+=======
+            <h2>$ {{ valor.valor }}</h2>
+
+            {% if request.user.is_authenticated %}
+            <h2> <a href="{% url 'reserva' %}">Reservar Entrada</a></h2>
+              {% else %}
+
+            <p3> Para Realizar su reserva, debe <a href="{% url 'login' %}">Iniciar Sesión</a></p3>
+            {% endif %}
+         {% endfor %}
+>>>>>>> Stashed changes
         </ul>
       {% else %}
         <p>No se encontraron valores para esta película.</p>
-      {% endif %}</div>
-    
+      {% endif %}
+    </div>
     <div class="v10_5"></div>
     <span class="v10_6">Para consultas puede mandar mail a: </span
     ><span class="v10_7">consultas@miradas.fugaces.com</span>
