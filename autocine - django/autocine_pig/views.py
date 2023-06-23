@@ -50,23 +50,15 @@ def complejos (request, pelicula_id=None):
     return render(request, 'autocine_pig/complejos.html', context)
 
 def valores(request, pelicula_id=None):
-
     if request.method == 'POST':
         pelicula_id = request.POST.get('pelicula_id')
-
         pelicula = get_object_or_404(Pelicula, id=pelicula_id)
         complejos = Complejo.objects.filter(peliculas=pelicula)
-<<<<<<< Updated upstream
-        valores = Valor.objects.filter(pelicula=pelicula)
-=======
-        valores = Valore.objects.filter(peliculas=pelicula)
-        
-
->>>>>>> Stashed changes
+        valores = Valore.objects.filter(pelicula=pelicula)
         context = {
             'pelicula': pelicula,
             'complejos': complejos,
-            'valore': valores,
+            'valores': valores,
             'pelicula_id': pelicula_id
         }
         return render(request, 'autocine_pig/valores.html', context)
@@ -74,14 +66,12 @@ def valores(request, pelicula_id=None):
     pelicula_id = request.GET.get('pelicula_id')
     if pelicula_id:
         pelicula = get_object_or_404(Pelicula, id=pelicula_id)
-        valores = Valor.objects.filter(pelicula=pelicula)
+        valores = Valore.objects.filter(pelicula=pelicula)
     else:
         pelicula = None
         valores = None
 
     peliculas = Pelicula.objects.all()
-    pelicula = Pelicula.objects.filter(id=pelicula_id)[0]
-    valores = Valore.objects.filter(pelicula_id=pelicula_id)
     context = {
         'peliculas': peliculas,
         'pelicula': pelicula,
